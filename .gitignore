@@ -6,7 +6,7 @@
 .pnp.js
 /client/node_modules
 package-lock.json
-/config/default.json
+default.json
 
 # testing
 /coverage
