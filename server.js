@@ -8,14 +8,14 @@ const app = express();
 
 app.use(express.json({ extended: false }));
 
-//Connect to database
-const db = config.get('mongoURI');
+
 
 // Connect to Mongo
 connectDB();
 
 //Define Routes
-app.use('/users', require('./routes/api/users'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 
 //set port variable
