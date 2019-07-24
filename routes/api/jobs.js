@@ -14,8 +14,9 @@ const User = require('../../models/User');
 
 router.get('/', async (req, res) => {
     try {
-        const jobs = await Jobs.find();
-        console.log(jobs)
+
+        const jobs = await Job.find();
+
         res.json(jobs);
     } catch (err) {
         console.error(err.message);
@@ -27,4 +28,3 @@ router.get('/', async (req, res) => {
 });
 
 module.exports = router;
-
