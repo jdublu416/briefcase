@@ -1,24 +1,20 @@
 const express = require('express');
-const config = require('config');
-const connectDB = require('./config/db')
+const connectDB = require('./config/db');
 
 const app = express();
 
 //Initialize Middleware:
-
-app.use(express.json({ extended: false }));
-
-//Connect to database
-const db = config.get('mongoURI');
+app.use(express.json({ extended: false}));
 
 // Connect to Mongo
 connectDB();
 
 //Define Routes
-app.use('/users', require('./routes/api/users'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/jobs', require('./routes/api/jobs'));
 
 
-//set port variable
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
