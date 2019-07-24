@@ -5,16 +5,18 @@ const {check, validationResult} = require('express-validator')
 const config = require('config');
 const auth = require('../../middleware/auth');
 
-const Job = require('../../models/Job');
+const Jobs = require('../../models/Jobs');
 const User = require('../../models/User');
 
-// @router      GET api/job
+// @router      GET api/jobs
 // @desc        get a list of all jobs for user
 // @access      public
 
 router.get('/', async (req, res) => {
     try {
+
         const jobs = await Job.find();
+
         res.json(jobs);
     } catch (err) {
         console.error(err.message);
