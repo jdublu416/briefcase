@@ -12,12 +12,9 @@ const User = require('../../models/User');
 // @desc        get a list of all jobs for user
 // @access      public
 
-router.get('/user/:user.id', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const jobs = await Job.find({
-            user: req.params.user_id
-        });
-        console.log(jobs)
+        const jobs = await Job.find();
         res.json(jobs);
     } catch (err) {
         console.error(err.message);
@@ -28,3 +25,4 @@ router.get('/user/:user.id', async (req, res) => {
     }
 });
 
+module.exports = router;
