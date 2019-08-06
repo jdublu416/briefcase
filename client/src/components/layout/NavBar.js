@@ -13,7 +13,7 @@ const NavBar = () => {
         </h1>
         <ul>
           <li>
-            <Link to='!#'>Jobs</Link>
+            <Link to='/jobs'>Jobs</Link>
           </li>
           <li>
           <Link to='/register'>Register</Link>
