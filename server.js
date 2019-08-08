@@ -13,6 +13,7 @@ connectDB();
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/jobs', require('./routes/api/jobs'));
+app.use('/api/interview', require('./routes/api/interview'));
 
 
 const PORT = process.env.PORT || 5000;
