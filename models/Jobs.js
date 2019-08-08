@@ -53,21 +53,7 @@ const JobSchema = new Schema({
   archives: {
     type: Array
   },
-  interviews: [
-    {
-      scheduled: Date,
-      interviewee: String,
-      notes: {
-        text: {
-          type: String
-        },
-        date: {
-          type: Date,
-          default: Date.now
-        }
-      }
-    }
-  ]
+  
 });
 
 module.exports = Job = mongoose.model('jobs', JobSchema);

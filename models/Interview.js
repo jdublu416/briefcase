@@ -6,23 +6,28 @@ const InterviewSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  jobs: {
-    type: mpngoose.Schema.Types.ObjectId,
+  job: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'jobs'
   },
+  companyName: String,
   scheduleDate: {
     type: String,
     isrequired: true
   },
   notes: {
-    text: {
-      type: String,
-      date: {
-        type: Date,
-        default: Date.now
-      }
+    type: String,
+    isrequired: true,
+    date: {
+      type: Date,
+      default: Date.now
     }
-  }
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  interviewer: String
 });
 
 module.exports = Interview = mongoose.model('interview', InterviewSchema);
