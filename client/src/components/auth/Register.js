@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { setAlert } from '../../actions/alertAction';
-import { register } from '../../actions/authAction';
+import { setAlert } from '../../actions/alertActions';
+import { register } from '../../actions/authActions';
 import PropTypes from 'prop-types';
 // import axios from 'axios';
 
@@ -28,9 +28,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
   };
 
-  //Redirect if registered
+  //Redirect if registered  todo-redirect to jobs dashboard
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/' />;
   }
 
   return (
