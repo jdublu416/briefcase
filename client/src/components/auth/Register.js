@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { setAlert } from '../../actions/alertAction';
-import { register } from '../../actions/authAction';
+import { setAlert } from '../../actions/alertActions';
+import { register } from '../../actions/authActions';
 import PropTypes from 'prop-types';
 // import axios from 'axios';
 
