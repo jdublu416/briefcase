@@ -61,3 +61,5 @@ export const addJob = FormData => async dispatch => {
     } catch (err) {
     }
 }
+
+//Delete job
