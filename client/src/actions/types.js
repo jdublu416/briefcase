@@ -14,3 +14,10 @@ export const LOGOUT = 'LOGOUT';
 //User actions
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
+
+//Job actions
+export const GET_JOBS = 'GET_JOBS';
+export const GET_JOB = 'GET_JOB';
+export const ADD_JOB = 'ADD_JOB';
+export const DELETE_JOB = 'DELETE_JOB';
+export const JOB_ERROR = 'JOB_ERROR';

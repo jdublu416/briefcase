@@ -8,6 +8,8 @@ const auth = require('../../middleware/auth');
 const Job = require('../../models/Jobs');
 const User = require('../../models/User');
 
+//TODO: create an update for job? or handle it within the create job route?
+
 // @router      GET api/jobs
 // @desc        get a list of all jobs for user
 // @access      private
@@ -19,16 +21,33 @@ router.get('/', async (req, res) => {
     res.json(jobs);
   } catch (err) {
     console.error(err.message);
-    if (err.kind == ObjectId) {
+    if (err.kind === 'ObjectId') {
       return res.status(400).json({ msg: 'No jobs found' });
     }
     res.status(500).send('Server Error');
   }
 });
 
-// @router      GET api/jobs/:job_id
+// @router      GET api/jobs/:id
 // @desc        find one job by id
 // @access      private
+
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id);
+    if(!job){
+      return res.status(404).json({msg: 'Job not found'});
+    }
+    res.json(job)
+
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({ msg: 'No jobs found' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
 
 // @router      POST api/jobs
 // @desc        create new job
