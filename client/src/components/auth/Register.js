@@ -135,12 +135,13 @@ export default connect(
 // import React from 'react';
 // import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
-// const Register = () => {
-//     state = {
-//         name: "",
-//         email: "",
-//         password: ""
-//     }
+const Register = () => {
+    state = {
+        name: "",
+        email: "",
+        password: "",
+        password2: ""
+    }
 
 //     onChange = (e) => {
 //         this.setState({
@@ -157,18 +158,45 @@ export default connect(
 //             password: this.state.password
 //         }
 //     }
-//     return (
-//         <Form onSubmit={this.onSubmit}>
-//             <FormGroup>
-//                 <Label for="name">Name:</Label>
-//                 <Input type="text" name="name" id="name" placeholder="Name" onChange= {this.onChange} />
-//                 <Label for="email"> Email:</Label>
-//                 <Input type="email" email="email" id="email" placeholder="Email" onChange={this.onChange} />
-//                 <Label for="password">Password:</Label>
-//                 <Input for="password" name="password" id="password" placeholder="Password" onChange={this.onChange}></Input>
-//             </FormGroup>
-//         </Form>
-//     )
-// }
+    return (
+        <Fragment>
+            <h1 className="register">Create Your Account</h1>
+            <form className="form">
+                <div className="form-group">
+                    <input type="text" 
+                    name="name" 
+                    id="name"
+                    placeholder="Name"
+                    value={name}
+                    />
+                </div>
+                <div className="form-group">
+                    <input type="email" 
+                    name="email" 
+                    id="email"
+                    placeholder="Email"
+                    value={email}
+                    />
+                </div>
+                <div className="form-group">
+                    <input type="password" 
+                    name="password" 
+                    id="password"
+                    placeholder="Password"
+                    value={password}
+                    />
+                </div>
+                <div className="form-group">
+                    <input type="password2" 
+                    name="password2" 
+                    id="password2"
+                    placeholder="Confirm Password"
+                    value={password2}
+                    />
+                </div>
+            </form>
+        </Fragment>
+    )
+}
 
-// export default Register
+export default Register;
