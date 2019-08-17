@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alertActions';
 import { register } from '../../actions/authActions';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
+
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -108,4 +108,5 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { setAlert, register }
+
 )(Register);
