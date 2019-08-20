@@ -24,7 +24,7 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
 
   //Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/' />; //todo- redirect to jobs dashboard
+    return <Redirect to='/dashboard' />; //todo- redirect to jobs dashboard
   }
 
   return (

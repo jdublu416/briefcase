@@ -30,7 +30,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   //Redirect if registered  todo-redirect to jobs dashboard
   if (isAuthenticated) {
-    return <Redirect to='/' />;
+    return <Redirect to='/login' />;
   }
 
   return (
