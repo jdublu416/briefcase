@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
-const Jobs = props => {
+import { getUserJobs} from '../../actions/jobActions'
+
+
+const Jobs = ({jobs, getJobs}) => {
     return (
         <div>
             Jobs
@@ -10,7 +14,8 @@ const Jobs = props => {
 }
 
 Jobs.propTypes = {
-
+jobs: PropTypes.array.isRequired,
+getUserJobs: PropTypes.func.isRequired
 }
 
-export default Jobs
+export default connect(null, {getUserJobs})(Jobs);

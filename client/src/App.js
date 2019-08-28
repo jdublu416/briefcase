@@ -17,7 +17,8 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
-import Jobs from './components/jobs/Jobs'
+import Jobs from './components/jobs/Jobs';
+import JobForm from './components/jobs/JobForm';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -41,6 +42,8 @@ const App = () => {
               <Route exact path='/register' component={Register} />
               <Route exact path='/dashboard' component={Dashboard} />
               <Route exact path='/jobs' component={Jobs} />
+              <Route exact path='/add-job' component={JobForm} />
+              
             </Switch>
           </section>
         </Fragment>

@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
-import {setAlert} from '../../actions/alertActions'
+import { setAlert } from '../../actions/alertActions';
 
 const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
@@ -18,13 +18,13 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    
+
     login(email, password);
   };
 
   //Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />; //todo- redirect to jobs dashboard
+    return <Redirect to='/dashboard' />;
   }
 
   return (
@@ -67,7 +67,6 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
   setAlert: PropTypes.func.isRequired
-
 };
 
 const mapStateToProps = state => ({
