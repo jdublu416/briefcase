@@ -4,9 +4,9 @@ import { setAlert } from '../actions/alertActions';
 
 // GET jobs
 
-export const getJobs = () => async dispatch => {
+export const getUserJobs = () => async dispatch => {
   try {
-    const res = await axios.get('/api/jobs');
+    const res = await axios.get('/api/jobs/all');
 
     dispatch({
       type: GET_JOBS,
@@ -20,7 +20,7 @@ export const getJobs = () => async dispatch => {
   }
 };
 
-// GET job
+// GET job by ID
 export const getJob = id => async dispatch => {
   try {
     const res = await axios.get(`/api/jobs/${id}`);

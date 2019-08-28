@@ -14,9 +14,12 @@ const User = require('../../models/User');
 // @desc        get a list of all jobs for user
 // @access      private
 
-router.get('/', async (req, res) => {
+router.get('/all', auth, async (req, res) => {
   try {
-    const jobs = await Job.find();
+    const jobs = await Job.find({user: req.user.id});
+    if (!jobs) {
+      return res.status(400).json({ msg: 'No jobs found for this user' });
+    }
 
     res.json(jobs);
   } catch (err) {

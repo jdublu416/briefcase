@@ -1,22 +1,41 @@
 import React, { Fragment, useEffect } from 'react';
-import { Links } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getJobs, getJob } from '../../actions/jobActions';
+import { getUserJobs } from '../../actions/jobActions';
+import Spinner from '../layout/Spinner';
+import DashboardBtns from './DashboardBtns';
 
-const Dashboard = ({ getJobs, auth: { user }, job }) => {
-// const {companyName, title, status, dateapplied} =job;
-
+const Dashboard = ({
+  getUserJobs,
+  auth: { user },
+  job: { loading, jobs, job }
+}) => {
+  // const {companyName, title, status, dateapplied} =job;
   useEffect(() => {
-    getJobs();
-  }, [getJobs]);
-  return (
-      <Fragment>
-          <h1 className="text-primary">Welcome {user.name}</h1>
+    getUserJobs();
+  }, [getUserJobs]);
 
-      </Fragment>
-  ) ;
+  return loading ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <h1 className='lead text-primary'>Welcome {user && user.name}</h1>
+      {jobs.length > 0 ? (
+        <Fragment>
+          <DashboardBtns />
+        </Fragment>
+      ) : (
+        <Fragment>
+          <p>You have not added any jobs, please add a job</p>
+          <Link to='/add-job' className='btn btn-primary my-1'>
+            Add A Job
+          </Link>
+        </Fragment>
+      )}
+    </Fragment>
+  );
 };
 
 Dashboard.propTypes = {
@@ -32,5 +51,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getJobs }
+  { getUserJobs }
 )(Dashboard);
