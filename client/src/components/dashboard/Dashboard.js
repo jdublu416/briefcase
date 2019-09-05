@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getUserJobs } from '../../actions/jobActions';
 import Spinner from '../layout/Spinner';
 import DashboardBtns from './DashboardBtns';
+import DashboardList from './DashboardList';
 
 const Dashboard = ({
   getUserJobs,
@@ -24,6 +25,7 @@ const Dashboard = ({
       <h1 className='lead text-primary'>Welcome {user && user.name}</h1>
       {jobs.length > 0 ? (
         <Fragment>
+          <DashboardList/>
           <DashboardBtns />
         </Fragment>
       ) : (

@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
-import './App.css';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
+import './App.css';
 
 //Auth
 import setAuthToken from './utils/setAuthToken';
@@ -27,6 +31,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    M.AutoInit();
   }, []);
 
   return (
