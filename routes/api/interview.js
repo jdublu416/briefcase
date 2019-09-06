@@ -64,4 +64,7 @@ router.post(
   }
 );
 
+//@route    Put api/interview/job/:id
+//@desc     put an interview
+//@access   private
 module.exports = router;

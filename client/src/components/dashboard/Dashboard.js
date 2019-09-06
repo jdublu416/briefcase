@@ -23,7 +23,7 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <h1 className='lead text-primary'>Welcome {user && user.name}</h1>
-      {jobs.length > 0 ? (
+      {job  !== null ? (
         <Fragment>
           <DashboardList/>
           <DashboardBtns />
@@ -41,7 +41,7 @@ const Dashboard = ({
 };
 
 Dashboard.propTypes = {
-  getJobs: PropTypes.func.isRequired,
+  getUserJobs: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   job: PropTypes.object.isRequired
 };
