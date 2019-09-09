@@ -32,7 +32,7 @@ export default function(state = initialState, action) {
     case ADD_JOB:
       return {
         ...state,
-        jobs: [payload, ...state.jobs],
+        job: payload,
         loading: false
       };
     case DELETE_JOB:

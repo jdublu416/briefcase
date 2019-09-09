@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const DashboardBtns = props => {
+const DashboardBtns = () => {
   return (
     <div className='dash-buttons'>
       <Link to='/add-job' className='btn btn-primary'>

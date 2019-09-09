@@ -11,7 +11,7 @@ import DashboardList from './DashboardList';
 const Dashboard = ({
   getUserJobs,
   auth: { user },
-  job: { loading, jobs, job }
+  job: { loading, job }
 }) => {
   // const {companyName, title, status, dateapplied} =job;
   useEffect(() => {

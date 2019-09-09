@@ -38,15 +38,17 @@ export const getJob = id => async dispatch => {
 };
 
 // Add Job
-export const addJob = FormData => async dispatch => {
-  
+export const addJob = formData => async dispatch => {
+ 
+  // const body = JSON.stringify(FormData);
   try {
-    const config = {
-      headers: {
-        'Content-type': 'application/json'
-      }
-    };
-    const res = await axios.post('/api/jobs', FormData, config);
+      const config = {
+        headers: {
+          "Content-type": "application/json"
+        }
+      };
+    const res = await axios.post('/api/jobs', formData, config);
+    console.log(res);
     dispatch({
       type: ADD_JOB,
       payload: res.data
