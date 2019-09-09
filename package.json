@@ -22,14 +22,14 @@
   "homepage": "https://github.com/jdublu416/briefcase#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.1.0",
+    "config": "^3.2.2",
     "express": "^4.17.1",
-    "express-validator": "^6.1.1",
+    "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.2"
+    "mongoose": "^5.6.13"
   },
   "devDependencies": {
-    "concurrently": "^4.1.1",
-    "nodemon": "^1.19.1"
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.2"
   }
 }

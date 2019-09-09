@@ -21,3 +21,9 @@ export const GET_JOB = 'GET_JOB';
 export const ADD_JOB = 'ADD_JOB';
 export const DELETE_JOB = 'DELETE_JOB';
 export const JOB_ERROR = 'JOB_ERROR';
+
+// Interview actions
+export const GET_INTERVIEWS = 'GET_INTERVIEWS';
+export const GET_INTERVIEW = 'GET_INTERVIEW';
+export const ADD_INTERVIEW = 'ADD_INTERVIEW';
+export const INTERVIEW_ERROR = 'INTERVIEW_ERROR';

@@ -47,8 +47,7 @@ const JobSchema = new Schema({
     }
   },
   dateapplied: {
-    type: Date,
-    default: Date.now
+    type: String
   },
   archives: {
     type: Array

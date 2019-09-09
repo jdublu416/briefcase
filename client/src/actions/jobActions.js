@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_JOBS, GET_JOB, ADD_JOB, DELETE_JOB, JOB_ERROR } from './types';
-import { setAlert } from '../actions/alertActions';
+import { setAlert } from './alertActions';
 
 // GET jobs
 
@@ -38,20 +38,27 @@ export const getJob = id => async dispatch => {
 };
 
 // Add Job
-export const addJob = FormData => async dispatch => {
-  const config = {
-    headers: {
-      'Content-type': 'application/json'
-    }
-  };
+export const addJob = formData => async dispatch => {
+ 
+  // const body = JSON.stringify(FormData);
   try {
-    const res = await axios.post('/api/jobs', FormData, config);
+      const config = {
+        headers: {
+          "Content-type": "application/json"
+        }
+      };
+    const res = await axios.post('/api/jobs', formData, config);
+    console.log(res);
     dispatch({
       type: ADD_JOB,
       payload: res.data
     });
     dispatch(setAlert('Job Created', 'success'));
   } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
     dispatch({
       type: JOB_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }

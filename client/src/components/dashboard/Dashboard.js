@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import { getUserJobs } from '../../actions/jobActions';
 import Spinner from '../layout/Spinner';
 import DashboardBtns from './DashboardBtns';
+import DashboardList from './DashboardList';
 
 const Dashboard = ({
   getUserJobs,
   auth: { user },
-  job: { loading, jobs, job }
+  job: { loading, job }
 }) => {
   // const {companyName, title, status, dateapplied} =job;
   useEffect(() => {
@@ -22,8 +23,9 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <h1 className='lead text-primary'>Welcome {user && user.name}</h1>
-      {jobs.length > 0 ? (
+      {job  !== null ? (
         <Fragment>
+          <DashboardList/>
           <DashboardBtns />
         </Fragment>
       ) : (
@@ -39,7 +41,7 @@ const Dashboard = ({
 };
 
 Dashboard.propTypes = {
-  getJobs: PropTypes.func.isRequired,
+  getUserJobs: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   job: PropTypes.object.isRequired
 };

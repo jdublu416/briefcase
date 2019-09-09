@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
-import './App.css';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
+import './App.css';
 
 //Auth
 import setAuthToken from './utils/setAuthToken';
@@ -19,6 +23,7 @@ import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import Jobs from './components/jobs/Jobs';
 import JobForm from './components/jobs/JobForm';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -27,6 +32,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    M.AutoInit();
   }, []);
 
   return (
@@ -40,10 +46,9 @@ const App = () => {
             <Switch>
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
-              <Route exact path='/dashboard' component={Dashboard} />
-              <Route exact path='/jobs' component={Jobs} />
-              <Route exact path='/add-job' component={JobForm} />
-              
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute exact path='/jobs' component={Jobs} />
+              <PrivateRoute exact path='/add-job' component={JobForm} />
             </Switch>
           </section>
         </Fragment>

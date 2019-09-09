@@ -1,14 +1,13 @@
 import {
-  GET_JOBS,
-  GET_JOB,
-  ADD_JOB,
-  DELETE_JOB,
-  JOB_ERROR
+  GET_INTERVIEW,
+  GET_INTERVIEWS,
+  ADD_INTERVIEW,
+  INTERVIEW_ERROR
 } from '../actions/types';
 
 const initialState = {
-  jobs: [],
-  job: null,
+  interviews: [],
+  interview: null,
   loading: true,
   error: {}
 };
@@ -17,31 +16,25 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_JOBS:
+    case GET_INTERVIEWS:
       return {
         ...state,
-        job: payload,
+        interviews: payload,
         loading: false
       };
-    case GET_JOB:
+    case GET_INTERVIEW:
       return {
         ...state,
-        job: payload,
+        interview: payload,
         loading: false
       };
-    case ADD_JOB:
+    case ADD_INTERVIEW:
       return {
         ...state,
-        job: payload,
+        interviews: [payload, ...state.interviews],
         loading: false
       };
-    case DELETE_JOB:
-      return {
-        ...state,
-        jobs: state.jobs.filter(job => job._id !== payload),
-        loading: false
-      };
-    case JOB_ERROR:
+    case INTERVIEW_ERROR:
       return {
         ...state,
         error: payload,
