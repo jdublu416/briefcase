@@ -15,13 +15,15 @@ const InterviewSchema = new Schema({
     type: String,
     isrequired: true
   },
+  scheduleTime: {
+    type: String,
+    isrequired: true
+  },
+  location: String,
   notes: {
     type: String,
     isrequired: true,
-    date: {
-      type: Date,
-      default: Date.now
-    }
+    date: String
   },
   date: {
     type: Date,

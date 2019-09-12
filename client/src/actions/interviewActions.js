@@ -41,3 +41,25 @@ export const getInterview = id => async dispatch => {
     });
   }
 };
+
+//Add an interview for a specific job
+export const addInterview = formData => async dispatch => {
+  const config = {
+    headers:{
+      "Content-type": "application/json"
+    }
+  };
+  try {
+    const res = await axios.post('/api/interview', formData, config);
+    dispatch({
+      type: ADD_INTERVIEW,
+      payload: res.data
+    })
+
+  } catch (err) {
+    dispatch({
+      type: INTERVIEW_ERROR,
+      payload: { msg: err.respose.statusText, status: err.response.status }
+    });
+  }
+}

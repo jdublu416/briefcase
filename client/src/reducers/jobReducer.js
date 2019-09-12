@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
     case GET_JOBS:
       return {
         ...state,
-        job: payload,
+        jobs: payload,
         loading: false
       };
     case GET_JOB:

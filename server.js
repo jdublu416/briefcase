@@ -3,7 +3,7 @@ const connectDB = require('./config/db');
 
 const app = express();
 
-//Initialize Middleware:
+//Middleware:
 app.use(express.json({ extended: false}));
 
 // Connect to Mongo
