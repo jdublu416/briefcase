@@ -1,8 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// import 'materialize-css/dist/css/materialize.min.css';
+/****************************Notes**************************
+ * need to investigate why the materialize is overriding the App.css page so we can use their components
+ */
+
+import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import './App.css';
 

@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 
 import { addJob } from '../../actions/jobActions';
 
+/******************************************************Notes*******************
+ * need to deal with unused variables to be addressed for adding to db.  toggle on the form for optional info?
+ * 
+ */
 const JobForm = ({ addJob }) => {
   const [formData, setFormData] = useState({
     companyName: '',
@@ -39,8 +43,14 @@ const JobForm = ({ addJob }) => {
   };
 
   const onSubmit = e => {
-    console.log(formData);
+    
     addJob(formData);
+    setFormData({
+      companyName: '',
+      title: '',
+      description: '',
+      dateapplied: ''
+    });
     e.preventDefault();
   };
 
@@ -102,4 +112,4 @@ JobForm.propTypes = {
 export default connect(
   null,
   { addJob }
-)(JobForm);
+)(withRouter(JobForm));

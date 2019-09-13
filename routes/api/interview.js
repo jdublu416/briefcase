@@ -29,12 +29,21 @@ router.get('/', auth, async (req, res) => {
 //@desc     post an interview
 //@access   private
 
+/**********************Note
+ * need to check and test the route again for new properties added to the model. 
+ * consider the route here to just be '/' vs /job/:id
+ * 
+ */
+
 router.post(
   '/job/:id',
   [
     auth,
     [
       check('scheduleDate', 'Scheduled Date is a required field')
+        .not()
+        .isEmpty(),
+        check('scheduleTime', 'Scheduled Time is a required field')
         .not()
         .isEmpty()
     ]
@@ -51,6 +60,7 @@ router.post(
         job: req.params.id,
         companyName: job.companyName,
         scheduleDate: req.body.scheduleDate,
+        scheduleTime: req.body.scheduleTime,
         interviewer: req.body.interviewer,
         notes: req.body.notes
       });
