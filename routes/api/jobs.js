@@ -16,7 +16,7 @@ const User = require('../../models/User');
 
 router.get('/all', auth, async (req, res) => {
   try {
-    const jobs = await Job.find({user: req.user.id});
+    const jobs = await Job.find({ user: req.user.id });
     if (!jobs) {
       return res.status(400).json({ msg: 'No jobs found for this user' });
     }
@@ -38,11 +38,10 @@ router.get('/all', auth, async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
   try {
     const job = await Job.findById(req.params.id);
-    if(!job){
-      return res.status(404).json({msg: 'Job not found'});
+    if (!job) {
+      return res.status(404).json({ msg: 'Job not found' });
     }
-    res.json(job)
-
+    res.json(job);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
@@ -60,15 +59,17 @@ router.post(
   '/',
   [
     auth,
-    check('companyName', 'Company Name is Required')
-      .not()
-      .isEmpty(),
-    check('title', 'Job Title is  required')
-      .not()
-      .isEmpty(),
-    check('description', 'Description is required')
-      .not()
-      .isEmpty()
+    [
+      check('companyName', 'Company Name is Required')
+        .not()
+        .isEmpty(),
+      check('title', 'Job Title is  required')
+        .not()
+        .isEmpty(),
+      check('description', 'Description is required')
+        .not()
+        .isEmpty()
+    ]
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -79,30 +80,53 @@ router.post(
       companyName,
       title,
       description,
-      contactPerson,
+      name,
+      email,
+      phone,
       status,
       interviewPending,
-      notes,
-      dateApplied,
-      interviews
+      text,
+      date,
+      dateApplied
     } = req.body;
 
+    // Build job Object
+    const jobFields = {};
+
+    jobFields.user = req.user.id;
+    if (companyName) jobFields.companyName = companyName;
+    if (title) jobFields.title = title;
+    if (description) jobFields.description = description;
+    if (status) jobFields.status = status;
+    if (interviewPending) jobFields.interviewPending = interviewPending;
+    if (dateApplied) jobFields.dateApplied = dateApplied;
+
+    // Build contactPerson Object
+    jobFields.contactPerson = {};
+    if (name) jobFields.contactPerson.name = name;
+    if (email) jobFields.contactPerson.email = email;
+    if (phone) jobFields.contactPerson.phone = phone;
+
+    // Build Notes Object
+    jobFields.notes = {};
+    if (text) jobFields.notes.text = text;
+    if (date) jobFields.notes.date = date;
+
     try {
-      const user = await User.findById(req.user.id).select('-password');
-      const newJob = new Job({
-        user: user.id,
-        companyName,
-        title,
-        description,
-        contactPerson,
-        status,
-        interviewPending,
-        notes,
-        dateApplied,
-        interviews
-      });
-      let job = await newJob.save();
-      res.json(job);
+      // const user = await User.findById(req.user.id).select('-password');
+      let job = await Job.findOne({ user: req.user.id });
+      if (job) {
+        job = await Job.findOneAndUpdate(
+          { user: req.user.id },
+          { $set: jobFields },
+          { new: true }
+        );
+        return res.json(job);
+      }
+
+      let newJob = new Job(jobFields);
+      await newJob.save();
+      res.json(newJob);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');

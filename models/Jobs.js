@@ -18,7 +18,7 @@ const JobSchema = new Schema({
     type: String,
     isrequired: true
   },
-  contactPerson: [
+  contactPerson: 
     {
       name: {
         type: String
@@ -30,9 +30,9 @@ const JobSchema = new Schema({
         type: String
       }
     }
-  ],
+  ,
   status: {
-    type: String
+    type: Boolean
   },
   interviewPending: {
     type: Boolean
