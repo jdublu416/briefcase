@@ -7,26 +7,36 @@ import { addJob } from '../../actions/jobActions';
 
 /******************************************************Notes*******************
  * need to deal with unused variables to be addressed for adding to db.  toggle on the form for optional info?
- * 
+ *
  */
 const JobForm = ({ addJob }) => {
   const [formData, setFormData] = useState({
     companyName: '',
     title: '',
     description: '',
-    contactPerson: [],
-    status: '',
+    name: '',
+    email: '',
+    phone: '',
+    status: false,
     interviewPending: false,
-    notes: '',
+    notes: {
+      text: '',
+      date: ''
+    },
     dateapplied: '',
-    archives: ''
+    archives: []
   });
+
+  const [displayJobDetails, toggleJobDetails] = useState(false);
+  const [displayNoteInput, toggleNoteInput] = useState(false);
 
   const {
     companyName,
     title,
     description,
-    contactPerson,
+    name,
+    email,
+    phone,
     status,
     interviewPending,
     notes,
@@ -43,12 +53,20 @@ const JobForm = ({ addJob }) => {
   };
 
   const onSubmit = e => {
-    
+    console.log(formData);
     addJob(formData);
     setFormData({
       companyName: '',
       title: '',
       description: '',
+      status: false,
+      name: '',
+      email: '',
+      phone: '',
+      notes: {
+        text: '',
+        date: ''
+      },
       dateapplied: ''
     });
     e.preventDefault();
@@ -61,6 +79,7 @@ const JobForm = ({ addJob }) => {
           <h3>Add A Job</h3>
         </div>
         <form className='form my-1' onSubmit={e => onSubmit(e)}>
+          {/* Required Job Information */}
           <input
             className='form-group'
             type='text'
@@ -94,6 +113,84 @@ const JobForm = ({ addJob }) => {
             value={dateapplied}
             onChange={e => onChange(e)}
           />
+
+          {/* Contact Person Details */}
+          <div className='my-2'>
+            <button
+              onClick={() => toggleJobDetails(!displayJobDetails)}
+              type='button'
+              className='btn btn-light'
+            >
+              Add Contact Person
+            </button>
+            <span>*</span>
+          </div>
+
+          {displayJobDetails && (
+            <Fragment>
+              <div className='form-group'>
+                <input
+                  type='text'
+                  name='name'
+                  id='contact-person-name'
+                  placeholder='Contact Person Name...'
+                  value={name}
+                  onChange={e => onChange(e)}
+                />
+                <input
+                  type='text'
+                  name='email'
+                  id='contact-person-email'
+                  value={email}
+                  placeholder='Contact Person Email...'
+                  onChange={e => onChange(e)}
+                />
+                <input
+                  type='text'
+                  name='phone'
+                  id='contact-person-phone'
+                  value={phone}
+                  placeholder='Contact Person Phone...'
+                  onChange={e => onChange(e)}
+                />
+              </div>
+            </Fragment>
+          )}
+
+          {/* Job Note Details */}
+          <div className='my-2'>
+            <button
+              onClick={() => toggleNoteInput(!displayNoteInput)}
+              type='button'
+              className='btn btn-light'
+            >
+              Add Notes
+            </button>
+            <span>*</span>
+          </div>
+          {displayNoteInput && (
+            <Fragment>
+              <div className='form-group'>
+                <textarea
+                  name='notes-text'
+                  value={notes.text}
+                  id=''
+                  cols='32'
+                  rows='20'
+                  placeholder='Enter notes...'
+                  onChange={e => onChange(e)}
+                ></textarea>
+                <input
+                  type='text'
+                  name='date-of-note'
+                  value={notes.date}
+                  id='noteDate'
+                  placeholder='Enter a date...'
+                  onChange={e => onChange(e)}
+                />
+              </div>
+            </Fragment>
+          )}
 
           <input type='submit' className='btn btn-light my-1' />
           <Link className='btn btn-light my-1' to='/dashboard'>

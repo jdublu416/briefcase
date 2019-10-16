@@ -39,8 +39,6 @@ export const getJob = id => async dispatch => {
 
 // Add Job
 export const addJob = formData => async dispatch => {
- 
-  // const body = JSON.stringify(FormData);
   try {
       const config = {
         headers: {
